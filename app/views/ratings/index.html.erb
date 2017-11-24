@@ -19,7 +19,7 @@
 
       <% @ratings.each do |rating| %>
       <tr>
-        <td><%= rating.insight_id %></td>
+        <td><%= rating.question.presentation_id %></td>
         <td><%= rating.contributor_id %></td>
         <td><%= rating.rating_type_id %></td>
         <td><%= rating.rating %></td>
