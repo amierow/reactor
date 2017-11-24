@@ -1,6 +1,9 @@
 class Insight < ApplicationRecord
   # Direct associations
 
+  has_many   :question_ratings,
+             :class_name => "Rating"
+
   has_many   :question_votes,
              :class_name => "Vote"
 
