@@ -6,6 +6,8 @@ class InsightsController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
+    @vote = Vote.new
     @insight = Insight.find(params[:id])
 
     render("insights/show.html.erb")

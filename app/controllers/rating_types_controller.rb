@@ -6,6 +6,7 @@ class RatingTypesController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
     @rating_type = RatingType.find(params[:id])
 
     render("rating_types/show.html.erb")

@@ -59,6 +59,65 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_contributor" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for presentation_id -->
+      <input type="hidden" name="presentation_id" value="<%= @presentation.id %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for email -->
+      <div class="form-group">
+        <label for="email" class="control-label">
+          Email
+        </label>
+
+        <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for position -->
+      <div class="form-group">
+        <label for="position" class="control-label">
+          Position
+        </label>
+
+        <input type="text" id="position" name="position" placeholder="Position" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for department -->
+      <div class="form-group">
+        <label for="department" class="control-label">
+          Department
+        </label>
+
+        <input type="text" id="department" name="department" placeholder="Department" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for facility -->
+      <div class="form-group">
+        <label for="facility" class="control-label">
+          Facility
+        </label>
+
+        <input type="text" id="facility" name="facility" placeholder="Facility" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Contributor
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -90,6 +149,56 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_insight" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for presentation_id -->
+      <input type="hidden" name="presentation_id" value="<%= @presentation.id %>">
+
+      <!-- Label and input for contributor_id -->
+      <div class="form-group">
+        <label for="contributor_id" class="control-label">
+          Contributor
+        </label>
+
+        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :presentation_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for insght_type_id -->
+      <div class="form-group">
+        <label for="insght_type_id" class="control-label">
+          Insght type
+        </label>
+
+        <%= select_tag(:insght_type_id, options_from_collection_for_select(InsightType.all, :id, :insight_type), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Insight
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

@@ -6,6 +6,7 @@ class InsightTypesController < ApplicationController
   end
 
   def show
+    @insight = Insight.new
     @insight_type = InsightType.find(params[:id])
 
     render("insight_types/show.html.erb")

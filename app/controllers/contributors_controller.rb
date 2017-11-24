@@ -6,6 +6,9 @@ class ContributorsController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
+    @vote = Vote.new
+    @insight = Insight.new
     @contributor = Contributor.find(params[:id])
 
     render("contributors/show.html.erb")

@@ -51,6 +51,62 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_insight" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for presentation_id -->
+      <div class="form-group">
+        <label for="presentation_id" class="control-label">
+          Presentation
+        </label>
+
+        <%= select_tag(:presentation_id, options_from_collection_for_select(Presentation.all, :id, :lead_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for contributor_id -->
+      <div class="form-group">
+        <label for="contributor_id" class="control-label">
+          Contributor
+        </label>
+
+        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :presentation_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for insght_type_id -->
+      <div class="form-group">
+        <label for="insght_type_id" class="control-label">
+          Insght type
+        </label>
+
+        <%= select_tag(:insght_type_id, options_from_collection_for_select(InsightType.all, :id, :insight_type), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Insight
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

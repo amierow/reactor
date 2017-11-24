@@ -16,6 +16,8 @@ class PresentationsController < ApplicationController
   end
 
   def show
+    @insight = Insight.new
+    @contributor = Contributor.new
     @presentation = Presentation.find(params[:id])
 
     render("presentations/show.html.erb")
