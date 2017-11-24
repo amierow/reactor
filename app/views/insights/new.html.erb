@@ -42,7 +42,7 @@
           Insght type
         </label>
 
-        <input type="text" id="insght_type_id" name="insght_type_id" placeholder="Insght type" class="form-control" value="<%= @insight.insght_type_id %>">
+        <%= select_tag(:insght_type_id, options_from_collection_for_select(InsightType.all, :id, :insight_type, @insight.insght_type_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for title -->
