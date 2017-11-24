@@ -42,7 +42,7 @@
           Rating type
         </label>
 
-        <input type="text" id="rating_type_id" name="rating_type_id" placeholder="Rating type" class="form-control" value="<%= @rating.rating_type_id %>">
+        <%= select_tag(:rating_type_id, options_from_collection_for_select(RatingType.all, :id, :rating_type, @rating.rating_type_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for rating -->
