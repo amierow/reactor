@@ -48,8 +48,6 @@ class PresentationsController < ApplicationController
 
   def update
     @presentation = Presentation.find(params[:id])
-
-    @presentation.lead_id = params[:lead_id]
     @presentation.date = params[:date]
     @presentation.name = params[:name]
 
