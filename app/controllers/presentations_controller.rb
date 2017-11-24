@@ -10,7 +10,7 @@ class PresentationsController < ApplicationController
   end
 
   def index
-    @presentations = Presentation.all
+    @presentations = current_user.presentations.page(params[:page]).per(10)
 
     render("presentations/index.html.erb")
   end
