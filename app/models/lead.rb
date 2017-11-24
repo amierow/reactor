@@ -1,6 +1,8 @@
 class Lead < ApplicationRecord
   # Direct associations
 
+  has_many   :presentations
+
   # Indirect associations
 
   # Validations
