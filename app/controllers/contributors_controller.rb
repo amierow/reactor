@@ -1,6 +1,7 @@
 class ContributorsController < ApplicationController
   def index
-    @contributors = Contributor.page(params[:page]).per(10)
+    @q = Contributor.ransack(params[:q])
+    @contributors = @q.result(:distinct => true).includes(:presentation, :questions, :question_votes, :question_ratings).page(params[:page]).per(10)
 
     render("contributors/index.html.erb")
   end

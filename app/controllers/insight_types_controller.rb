@@ -1,6 +1,7 @@
 class InsightTypesController < ApplicationController
   def index
-    @insight_types = InsightType.page(params[:page]).per(10)
+    @q = InsightType.ransack(params[:q])
+    @insight_types = @q.result(:distinct => true).includes(:insights).page(params[:page]).per(10)
 
     render("insight_types/index.html.erb")
   end
