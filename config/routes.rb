@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Insight resource:
+  # CREATE
+  get "/insights/new", :controller => "insights", :action => "new"
+  post "/create_insight", :controller => "insights", :action => "create"
+
+  # READ
+  get "/insights", :controller => "insights", :action => "index"
+  get "/insights/:id", :controller => "insights", :action => "show"
+
+  # UPDATE
+  get "/insights/:id/edit", :controller => "insights", :action => "edit"
+  post "/update_insight/:id", :controller => "insights", :action => "update"
+
+  # DELETE
+  get "/delete_insight/:id", :controller => "insights", :action => "destroy"
+  #------------------------------
+
   # Routes for the Contributor resource:
   # CREATE
   get "/contributors/new", :controller => "contributors", :action => "new"

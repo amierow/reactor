@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>
+    Insights
+    <a href="/insights/new" class="btn btn-lg btn-success">New Insight</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Presentation</th>
+        <th>Contributor</th>
+        <th>Insght type</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @insights.each do |insight| %>
+      <tr>
+        <td><%= insight.presentation_id %></td>
+        <td><%= insight.contributor_id %></td>
+        <td><%= insight.insght_type_id %></td>
+        <td><%= insight.title %></td>
+        <td><%= insight.body %></td>
+        <td>
+          <a href="/insights/<%= insight.id %>" class="btn btn-primary">Show</a>
+          <a href="/insights/<%= insight.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_insight/<%= insight.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

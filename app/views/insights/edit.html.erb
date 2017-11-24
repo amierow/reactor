@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @insight.errors.any? %>
+  <% @insight.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Insight #<%= @insight.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_insight/<%= @insight.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for presentation_id -->
+      <div class="form-group">
+        <label for="presentation_id" class="control-label">
+          Presentation
+        </label>
+
+        <input type="text" id="presentation_id" name="presentation_id" placeholder="Presentation" class="form-control" value="<%= @insight.presentation_id %>">
+      </div>
+
+      <!-- Label and input for contributor_id -->
+      <div class="form-group">
+        <label for="contributor_id" class="control-label">
+          Contributor
+        </label>
+
+        <input type="text" id="contributor_id" name="contributor_id" placeholder="Contributor" class="form-control" value="<%= @insight.contributor_id %>">
+      </div>
+
+      <!-- Label and input for insght_type_id -->
+      <div class="form-group">
+        <label for="insght_type_id" class="control-label">
+          Insght type
+        </label>
+
+        <input type="text" id="insght_type_id" name="insght_type_id" placeholder="Insght type" class="form-control" value="<%= @insight.insght_type_id %>">
+      </div>
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @insight.title %>">
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="<%= @insight.body %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Insight
+      </button>
+      or
+      <a href="/insights/<%= @insight.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
