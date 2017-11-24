@@ -1,6 +1,8 @@
 class Presentation < ApplicationRecord
   # Direct associations
 
+  has_many   :insights
+
   has_many   :contributors
 
   belongs_to :lead,
