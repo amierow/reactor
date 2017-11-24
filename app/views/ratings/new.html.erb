@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @rating.errors.any? %>
+  <% @rating.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Rating</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_rating" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for insight_id -->
+      <div class="form-group">
+        <label for="insight_id" class="control-label">
+          Insight
+        </label>
+
+        <input type="text" id="insight_id" name="insight_id" placeholder="Insight" class="form-control" value="<%= @rating.insight_id %>">
+      </div>
+
+      <!-- Label and input for contributor_id -->
+      <div class="form-group">
+        <label for="contributor_id" class="control-label">
+          Contributor
+        </label>
+
+        <input type="text" id="contributor_id" name="contributor_id" placeholder="Contributor" class="form-control" value="<%= @rating.contributor_id %>">
+      </div>
+
+      <!-- Label and input for rating_type_id -->
+      <div class="form-group">
+        <label for="rating_type_id" class="control-label">
+          Rating type
+        </label>
+
+        <input type="text" id="rating_type_id" name="rating_type_id" placeholder="Rating type" class="form-control" value="<%= @rating.rating_type_id %>">
+      </div>
+
+      <!-- Label and input for rating -->
+      <div class="form-group">
+        <label for="rating" class="control-label">
+          Rating
+        </label>
+
+        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @rating.rating %>">
+      </div>
+
+      <!-- Label and input for feedback -->
+      <div class="form-group">
+        <label for="feedback" class="control-label">
+          Feedback
+        </label>
+
+        <input type="text" id="feedback" name="feedback" placeholder="Feedback" class="form-control" value="<%= @rating.feedback %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Rating
+      </button>
+      or
+      <a href="/ratings">Cancel</a>
+    </form>
+  </div>
+</div>

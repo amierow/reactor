@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h3>Rating #<%= @rating.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Insight</dt>
+      <dd><%= @rating.insight_id %></dd>
+
+      <dt>Contributor</dt>
+      <dd><%= @rating.contributor_id %></dd>
+
+      <dt>Rating type</dt>
+      <dd><%= @rating.rating_type_id %></dd>
+
+      <dt>Rating</dt>
+      <dd><%= @rating.rating %></dd>
+
+      <dt>Feedback</dt>
+      <dd><%= @rating.feedback %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/ratings" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/ratings/<%= @rating.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_rating/<%= @rating.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
