@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h3>Rating Type #<%= @rating_type.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Rating type</dt>
+      <dd><%= @rating_type.rating_type %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/rating_types" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/rating_types/<%= @rating_type.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_rating_type/<%= @rating_type.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Rating_type resource:
+  # CREATE
+  get "/rating_types/new", :controller => "rating_types", :action => "new"
+  post "/create_rating_type", :controller => "rating_types", :action => "create"
+
+  # READ
+  get "/rating_types", :controller => "rating_types", :action => "index"
+  get "/rating_types/:id", :controller => "rating_types", :action => "show"
+
+  # UPDATE
+  get "/rating_types/:id/edit", :controller => "rating_types", :action => "edit"
+  post "/update_rating_type/:id", :controller => "rating_types", :action => "update"
+
+  # DELETE
+  get "/delete_rating_type/:id", :controller => "rating_types", :action => "destroy"
+  #------------------------------
+
   # Routes for the Vote resource:
   # CREATE
   get "/votes/new", :controller => "votes", :action => "new"

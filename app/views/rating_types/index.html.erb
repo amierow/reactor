@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>
+    Rating types
+    <a href="/rating_types/new" class="btn btn-lg btn-success">New Rating type</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Rating type</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @rating_types.each do |rating_type| %>
+      <tr>
+        <td><%= rating_type.rating_type %></td>
+        <td>
+          <a href="/rating_types/<%= rating_type.id %>" class="btn btn-primary">Show</a>
+          <a href="/rating_types/<%= rating_type.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_rating_type/<%= rating_type.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
