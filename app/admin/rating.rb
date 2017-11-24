@@ -1,5 +1,7 @@
 ActiveAdmin.register Rating do
 
+ permit_params :insight_id, :contributor_id, :rating_type_id, :rating, :feedback
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
