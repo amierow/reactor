@@ -24,7 +24,7 @@
           Presentation
         </label>
 
-        <input type="text" id="presentation_id" name="presentation_id" placeholder="Presentation" class="form-control" value="<%= @contributor.presentation_id %>">
+        <%= select_tag(:presentation_id, options_from_collection_for_select(Presentation.all, :id, :lead_id, @contributor.presentation_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for name -->
