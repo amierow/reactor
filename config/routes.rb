@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Insight_type resource:
+  # CREATE
+  get "/insight_types/new", :controller => "insight_types", :action => "new"
+  post "/create_insight_type", :controller => "insight_types", :action => "create"
+
+  # READ
+  get "/insight_types", :controller => "insight_types", :action => "index"
+  get "/insight_types/:id", :controller => "insight_types", :action => "show"
+
+  # UPDATE
+  get "/insight_types/:id/edit", :controller => "insight_types", :action => "edit"
+  post "/update_insight_type/:id", :controller => "insight_types", :action => "update"
+
+  # DELETE
+  get "/delete_insight_type/:id", :controller => "insight_types", :action => "destroy"
+  #------------------------------
+
   # Routes for the Rating_type resource:
   # CREATE
   get "/rating_types/new", :controller => "rating_types", :action => "new"

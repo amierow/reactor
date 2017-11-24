@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h3>Insight Type #<%= @insight_type.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Insight type</dt>
+      <dd><%= @insight_type.insight_type %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/insight_types" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/insight_types/<%= @insight_type.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_insight_type/<%= @insight_type.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

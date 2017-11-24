@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @insight_type.errors.any? %>
+  <% @insight_type.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Insight Type #<%= @insight_type.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_insight_type/<%= @insight_type.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for insight_type -->
+      <div class="form-group">
+        <label for="insight_type" class="control-label">
+          Insight type
+        </label>
+
+        <input type="text" id="insight_type" name="insight_type" placeholder="Insight type" class="form-control" value="<%= @insight_type.insight_type %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Insight Type
+      </button>
+      or
+      <a href="/insight_types/<%= @insight_type.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
