@@ -1,6 +1,6 @@
 class InsightsController < ApplicationController
   def index
-    @insights = Insight.all
+    @insights = Insight.page(params[:page]).per(10)
 
     render("insights/index.html.erb")
   end

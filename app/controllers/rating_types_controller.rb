@@ -1,6 +1,6 @@
 class RatingTypesController < ApplicationController
   def index
-    @rating_types = RatingType.all
+    @rating_types = RatingType.page(params[:page]).per(10)
 
     render("rating_types/index.html.erb")
   end

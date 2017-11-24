@@ -1,6 +1,6 @@
 class InsightTypesController < ApplicationController
   def index
-    @insight_types = InsightType.all
+    @insight_types = InsightType.page(params[:page]).per(10)
 
     render("insight_types/index.html.erb")
   end

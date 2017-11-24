@@ -1,6 +1,6 @@
 class ContributorsController < ApplicationController
   def index
-    @contributors = Contributor.all
+    @contributors = Contributor.page(params[:page]).per(10)
 
     render("contributors/index.html.erb")
   end
