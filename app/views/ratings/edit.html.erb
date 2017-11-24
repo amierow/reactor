@@ -24,7 +24,7 @@
           Insight
         </label>
 
-        <input type="text" id="insight_id" name="insight_id" placeholder="Insight" class="form-control" value="<%= @rating.insight_id %>">
+        <%= select_tag(:insight_id, options_from_collection_for_select(Insight.all, :id, :presentation_id, @rating.insight_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for contributor_id -->
