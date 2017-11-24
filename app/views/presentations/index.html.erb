@@ -22,8 +22,11 @@
         <td><%= presentation.name %></td>
         <td>
           <a href="/presentations/<%= presentation.id %>" class="btn btn-primary">Show</a>
-          <a href="/presentations/<%= presentation.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_presentation/<%= presentation.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == presentation.lead %>
+            <a href="/presentations/<%= presentation.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_presentation/<%= presentation.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

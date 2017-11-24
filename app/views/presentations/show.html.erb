@@ -20,12 +20,14 @@
       <a href="/presentations" class="btn btn-primary">
         Back
       </a>
-      <a href="/presentations/<%= @presentation.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_presentation/<%= @presentation.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if current_user == @presentation.lead %>
+        <a href="/presentations/<%= @presentation.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_presentation/<%= @presentation.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
     </div>
   </div>
 </div>
