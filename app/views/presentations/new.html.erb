@@ -24,7 +24,7 @@
           Lead
         </label>
 
-        <input type="text" id="lead_id" name="lead_id" placeholder="Lead" class="form-control" value="<%= @presentation.lead_id %>">
+        <%= select_tag(:lead_id, options_from_collection_for_select(Lead.all, :id, :email, @presentation.lead_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for date -->
