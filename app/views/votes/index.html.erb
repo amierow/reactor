@@ -17,7 +17,7 @@
 
       <% @votes.each do |vote| %>
       <tr>
-        <td><%= vote.insight_id %></td>
+        <td><%= vote.question.presentation_id %></td>
         <td><%= vote.contributor_id %></td>
         <td><%= vote.vote %></td>
         <td>
