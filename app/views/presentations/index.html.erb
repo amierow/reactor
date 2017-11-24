@@ -17,7 +17,7 @@
 
       <% @presentations.each do |presentation| %>
       <tr>
-        <td><%= presentation.lead_id %></td>
+        <td><%= presentation.lead.email %></td>
         <td><%= presentation.date %></td>
         <td><%= presentation.name %></td>
         <td>
