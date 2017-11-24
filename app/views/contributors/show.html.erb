@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Contributor #<%= @contributor.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Presentation</dt>
+      <dd><%= @contributor.presentation_id %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @contributor.name %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @contributor.email %></dd>
+
+      <dt>Position</dt>
+      <dd><%= @contributor.position %></dd>
+
+      <dt>Department</dt>
+      <dd><%= @contributor.department %></dd>
+
+      <dt>Facility</dt>
+      <dd><%= @contributor.facility %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/contributors" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/contributors/<%= @contributor.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_contributor/<%= @contributor.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

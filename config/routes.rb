@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Contributor resource:
+  # CREATE
+  get "/contributors/new", :controller => "contributors", :action => "new"
+  post "/create_contributor", :controller => "contributors", :action => "create"
+
+  # READ
+  get "/contributors", :controller => "contributors", :action => "index"
+  get "/contributors/:id", :controller => "contributors", :action => "show"
+
+  # UPDATE
+  get "/contributors/:id/edit", :controller => "contributors", :action => "edit"
+  post "/update_contributor/:id", :controller => "contributors", :action => "update"
+
+  # DELETE
+  get "/delete_contributor/:id", :controller => "contributors", :action => "destroy"
+  #------------------------------
+
   # Routes for the Presentation resource:
   # CREATE
   get "/presentations/new", :controller => "presentations", :action => "new"
