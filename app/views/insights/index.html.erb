@@ -9,6 +9,11 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :answered_cont, "Answered contains" %>
+    <%= f.text_field :answered_cont, :class => "form-control", :placeholder => "Answered contains" %>
+  </div>
+
+<div class="form-group">
     <%= f.label :body_cont, "Body contains" %>
     <%= f.text_field :body_cont, :class => "form-control", :placeholder => "Body contains" %>
   </div>
@@ -82,6 +87,7 @@
         <th>Insght type</th>
         <th>Title</th>
         <th>Body</th>
+        <th>Answered</th>
         <th>Actions</th>
       </tr>
 
@@ -110,6 +116,7 @@
         </td>
         <td><%= insight.title %></td>
         <td><%= insight.body %></td>
+        <td><%= insight.answered %></td>
         <td>
           <a href="/insights/<%= insight.id %>" class="btn btn-primary">Show</a>
           <a href="/insights/<%= insight.id %>/edit" class="btn btn-warning">Edit</a>

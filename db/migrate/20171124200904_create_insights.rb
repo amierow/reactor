@@ -6,6 +6,7 @@ class CreateInsights < ActiveRecord::Migration
       t.integer :insght_type_id
       t.string :title
       t.string :body
+      t.string :answered
 
       t.timestamps
 

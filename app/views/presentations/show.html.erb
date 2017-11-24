@@ -200,11 +200,51 @@
         <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
       </div>
 
+      <!-- Label and input for answered -->
+      <div class="form-group">
+        <label for="answered" class="control-label">
+          Answered
+        </label>
+
+        <input type="text" id="answered" name="answered" placeholder="Answered" class="form-control" value="">
+      </div>
+
       <button class="btn btn-block btn-success">
         Create Insight
       </button>
     </form>
       </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Presentation has many question_ratings -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Question Ratings
+      </li>
+
+      <% @presentation.question_ratings.each do |rating| %>
+        <li class="list-group-item">
+          <a href="/ratings/<%= rating.id %>">
+            <%= rating.insight_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/ratings/<%= rating.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_rating/<%= rating.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

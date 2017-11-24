@@ -15,6 +15,10 @@ class Contributor < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :lead,
+             :through => :presentation,
+             :source => :lead
+
   # Validations
 
 end

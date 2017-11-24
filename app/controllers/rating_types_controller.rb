@@ -1,12 +1,13 @@
 class RatingTypesController < ApplicationController
   def index
     @q = RatingType.ransack(params[:q])
-    @rating_types = @q.result(:distinct => true).includes(:question_ratings).page(params[:page]).per(10)
+    @rating_types = @q.result(:distinct => true).includes(:question_ratings, :rating_levels).page(params[:page]).per(10)
 
     render("rating_types/index.html.erb")
   end
 
   def show
+    @rating_level = RatingLevel.new
     @rating = Rating.new
     @rating_type = RatingType.find(params[:id])
 

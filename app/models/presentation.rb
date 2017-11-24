@@ -10,6 +10,10 @@ class Presentation < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :question_ratings,
+             :through => :insights,
+             :source => :question_ratings
+
   # Validations
 
 end

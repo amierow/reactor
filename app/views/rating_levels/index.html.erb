@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>
+    Rating levels
+    <a href="/rating_levels/new" class="btn btn-lg btn-success">New Rating level</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Rating level</th>
+        <th>Order number</th>
+        <th>Score</th>
+        <th>Rating type</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @rating_levels.each do |rating_level| %>
+      <tr>
+        <td><%= rating_level.rating_level %></td>
+        <td><%= rating_level.order_number %></td>
+        <td><%= rating_level.score %></td>
+        <td>
+          <% if rating_level.rating_type.present? %>
+            <a href="/rating_types/<%= rating_level.rating_type.id %>">
+              <%= rating_level.rating_type.rating_type %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <a href="/rating_levels/<%= rating_level.id %>" class="btn btn-primary">Show</a>
+          <a href="/rating_levels/<%= rating_level.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_rating_level/<%= rating_level.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @rating_levels, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>

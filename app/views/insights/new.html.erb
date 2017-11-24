@@ -63,6 +63,15 @@
         <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="<%= @insight.body %>">
       </div>
 
+      <!-- Label and input for answered -->
+      <div class="form-group">
+        <label for="answered" class="control-label">
+          Answered
+        </label>
+
+        <input type="text" id="answered" name="answered" placeholder="Answered" class="form-control" value="<%= @insight.answered %>">
+      </div>
+
       <button class="btn btn-success">
         Create Insight
       </button>

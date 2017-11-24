@@ -14,6 +14,10 @@ class Rating < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :presentation,
+             :through => :question,
+             :source => :presentation
+
   # Validations
 
 end

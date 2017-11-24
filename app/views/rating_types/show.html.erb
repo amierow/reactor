@@ -110,3 +110,81 @@
     </ul>
   </div>
 </div>
+
+<!-- A Rating type has many rating_levels -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Rating Levels
+      </li>
+
+      <% @rating_type.rating_levels.each do |rating_level| %>
+        <li class="list-group-item">
+          <a href="/rating_levels/<%= rating_level.id %>">
+            <%= rating_level.rating_level %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/rating_levels/<%= rating_level.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/rating_levels/<%= rating_level.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_rating_level/<%= rating_level.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_rating_level" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for rating_level -->
+      <div class="form-group">
+        <label for="rating_level" class="control-label">
+          Rating level
+        </label>
+
+        <input type="text" id="rating_level" name="rating_level" placeholder="Rating level" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for order_number -->
+      <div class="form-group">
+        <label for="order_number" class="control-label">
+          Order number
+        </label>
+
+        <input type="text" id="order_number" name="order_number" placeholder="Order number" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for score -->
+      <div class="form-group">
+        <label for="score" class="control-label">
+          Score
+        </label>
+
+        <input type="text" id="score" name="score" placeholder="Score" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for rating_type_id -->
+      <div class="form-group">
+        <label for="rating_type_id" class="control-label">
+          Rating type
+        </label>
+
+        <%= select_tag(:rating_type_id, options_from_collection_for_select(RatingType.all, :id, :rating_type), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Rating Level
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -28,6 +28,7 @@ class InsightsController < ApplicationController
     @insight.insght_type_id = params[:insght_type_id]
     @insight.title = params[:title]
     @insight.body = params[:body]
+    @insight.answered = params[:answered]
 
     save_status = @insight.save
 
@@ -59,6 +60,7 @@ class InsightsController < ApplicationController
     @insight.insght_type_id = params[:insght_type_id]
     @insight.title = params[:title]
     @insight.body = params[:body]
+    @insight.answered = params[:answered]
 
     save_status = @insight.save
 

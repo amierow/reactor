@@ -11,7 +11,7 @@ class PresentationsController < ApplicationController
 
   def index
     @q = current_user.presentations.ransack(params[:q])
-      @presentations = @q.result(:distinct => true).includes(:lead, :contributors, :insights).page(params[:page]).per(10)
+      @presentations = @q.result(:distinct => true).includes(:lead, :contributors, :insights, :question_ratings).page(params[:page]).per(10)
 
     render("presentations/index.html.erb")
   end

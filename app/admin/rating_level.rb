@@ -1,6 +1,6 @@
-ActiveAdmin.register Insight do
+ActiveAdmin.register RatingLevel do
 
- permit_params :presentation_id, :contributor_id, :insght_type_id, :title, :body, :answered
+ permit_params :rating_level, :order_number, :score, :rating_type_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Rating Level #<%= @rating_level.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Rating level</dt>
+      <dd><%= @rating_level.rating_level %></dd>
+
+      <dt>Order number</dt>
+      <dd><%= @rating_level.order_number %></dd>
+
+      <dt>Score</dt>
+      <dd><%= @rating_level.score %></dd>
+
+      <dt>Rating type</dt>
+      <dd>
+        <% if @rating_level.rating_type.present? %>
+          <a href="/rating_types/<%= @rating_level.rating_type_id %>">
+            <%= @rating_level.rating_type.rating_type %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/rating_levels" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/rating_levels/<%= @rating_level.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_rating_level/<%= @rating_level.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

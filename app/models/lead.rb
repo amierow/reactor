@@ -5,6 +5,10 @@ class Lead < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :contributors,
+             :through => :presentations,
+             :source => :contributors
+
   # Validations
 
   # Include default devise modules. Others available are:
