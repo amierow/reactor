@@ -17,7 +17,13 @@
 
       <% @presentations.each do |presentation| %>
       <tr>
-        <td><%= presentation.lead.email %></td>
+        <td>
+          <% if presentation.lead.present? %>
+            <a href="/leads/<%= presentation.lead.id %>">
+              <%= presentation.lead.email %>
+            </a>
+          <% end %>
+        </td>
         <td><%= presentation.date %></td>
         <td><%= presentation.name %></td>
         <td>

@@ -6,13 +6,31 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Insight</dt>
-      <dd><%= @rating.insight_id %></dd>
+      <dd>
+        <% if @rating.question.present? %>
+          <a href="/insights/<%= @rating.insight_id %>">
+            <%= @rating.question.presentation_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Contributor</dt>
-      <dd><%= @rating.contributor_id %></dd>
+      <dd>
+        <% if @rating.contributor.present? %>
+          <a href="/contributors/<%= @rating.contributor_id %>">
+            <%= @rating.contributor.presentation_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Rating type</dt>
-      <dd><%= @rating.rating_type_id %></dd>
+      <dd>
+        <% if @rating.rating_type.present? %>
+          <a href="/rating_types/<%= @rating.rating_type_id %>">
+            <%= @rating.rating_type.rating_type %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Rating</dt>
       <dd><%= @rating.rating %></dd>

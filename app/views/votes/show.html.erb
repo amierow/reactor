@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Insight</dt>
-      <dd><%= @vote.insight_id %></dd>
+      <dd>
+        <% if @vote.question.present? %>
+          <a href="/insights/<%= @vote.insight_id %>">
+            <%= @vote.question.presentation_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Contributor</dt>
-      <dd><%= @vote.contributor_id %></dd>
+      <dd>
+        <% if @vote.contributor.present? %>
+          <a href="/contributors/<%= @vote.contributor_id %>">
+            <%= @vote.contributor.presentation_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Vote</dt>
       <dd><%= @vote.vote %></dd>

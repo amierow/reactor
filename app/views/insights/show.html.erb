@@ -6,13 +6,31 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Presentation</dt>
-      <dd><%= @insight.presentation_id %></dd>
+      <dd>
+        <% if @insight.presentation.present? %>
+          <a href="/presentations/<%= @insight.presentation_id %>">
+            <%= @insight.presentation.lead_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Contributor</dt>
-      <dd><%= @insight.contributor_id %></dd>
+      <dd>
+        <% if @insight.contributor.present? %>
+          <a href="/contributors/<%= @insight.contributor_id %>">
+            <%= @insight.contributor.presentation_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Insght type</dt>
-      <dd><%= @insight.insght_type_id %></dd>
+      <dd>
+        <% if @insight.insght_type.present? %>
+          <a href="/insight_types/<%= @insight.insght_type_id %>">
+            <%= @insight.insght_type.insight_type %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Title</dt>
       <dd><%= @insight.title %></dd>

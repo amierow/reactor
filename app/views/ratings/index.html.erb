@@ -19,9 +19,27 @@
 
       <% @ratings.each do |rating| %>
       <tr>
-        <td><%= rating.question.presentation_id %></td>
-        <td><%= rating.contributor.presentation_id %></td>
-        <td><%= rating.rating_type.rating_type %></td>
+        <td>
+          <% if rating.question.present? %>
+            <a href="/insights/<%= rating.question.id %>">
+              <%= rating.question.presentation_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if rating.contributor.present? %>
+            <a href="/contributors/<%= rating.contributor.id %>">
+              <%= rating.contributor.presentation_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if rating.rating_type.present? %>
+            <a href="/rating_types/<%= rating.rating_type.id %>">
+              <%= rating.rating_type.rating_type %>
+            </a>
+          <% end %>
+        </td>
         <td><%= rating.rating %></td>
         <td><%= rating.feedback %></td>
         <td>

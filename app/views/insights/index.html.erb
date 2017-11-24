@@ -19,9 +19,27 @@
 
       <% @insights.each do |insight| %>
       <tr>
-        <td><%= insight.presentation.lead_id %></td>
-        <td><%= insight.contributor.presentation_id %></td>
-        <td><%= insight.insght_type.insight_type %></td>
+        <td>
+          <% if insight.presentation.present? %>
+            <a href="/presentations/<%= insight.presentation.id %>">
+              <%= insight.presentation.lead_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if insight.contributor.present? %>
+            <a href="/contributors/<%= insight.contributor.id %>">
+              <%= insight.contributor.presentation_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if insight.insght_type.present? %>
+            <a href="/insight_types/<%= insight.insght_type.id %>">
+              <%= insight.insght_type.insight_type %>
+            </a>
+          <% end %>
+        </td>
         <td><%= insight.title %></td>
         <td><%= insight.body %></td>
         <td>
