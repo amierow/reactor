@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Presentation #<%= @presentation.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Lead</dt>
+      <dd><%= @presentation.lead_id %></dd>
+
+      <dt>Date</dt>
+      <dd><%= @presentation.date %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @presentation.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/presentations" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/presentations/<%= @presentation.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_presentation/<%= @presentation.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
