@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "presentations#index"
   # Routes for the Insight_type resource:
   # CREATE
   get "/insight_types/new", :controller => "insight_types", :action => "new"
