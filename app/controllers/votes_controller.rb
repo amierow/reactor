@@ -1,7 +1,8 @@
 class VotesController < ApplicationController
+  skip_before_filter :authenticate_lead!, :only => [:create]
   def index
     @q = Vote.ransack(params[:q])
-    @votes = @q.result(:distinct => true).includes(:contributor, :question).page(params[:page]).per(10)
+    @votes = @q.result(:distinct => true).includes(:contributor, :insight).page(params[:page]).per(10)
 
     render("votes/index.html.erb")
   end

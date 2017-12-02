@@ -78,16 +78,16 @@
       <% @votes.each do |vote| %>
       <tr>
         <td>
-          <% if vote.question.present? %>
-            <a href="/insights/<%= vote.question.id %>">
-              <%= vote.question.presentation_id %>
+          <% if vote.insight.present? %>
+            <a href="/insights/<%= vote.insight.id %>">
+              <%= vote.insight_id %>
             </a>
           <% end %>
         </td>
         <td>
           <% if vote.contributor.present? %>
             <a href="/contributors/<%= vote.contributor.id %>">
-              <%= vote.contributor.presentation_id %>
+              <%= vote.contributor.name %>
             </a>
           <% end %>
         </td>

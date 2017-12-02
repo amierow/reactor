@@ -1,210 +1,139 @@
 <div class="page-header">
-  <h3>Presentation #<%= @presentation.id %></h3>
+  <h3><%= @presentation.name%></h3>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Lead</dt>
-      <dd>
-        <% if @presentation.lead.present? %>
-          <a href="/leads/<%= @presentation.lead_id %>">
-            <%= @presentation.lead.email %>
-          </a>
-        <% end %>
-      </dd>
 
-      <dt>Date</dt>
-      <dd><%= @presentation.date %></dd>
+<%if current_lead == @presentation.lead %>
+<%@presentation_insights_sorted.each do |insight| %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-1">
+      <%=insight.vote_score%> 
+    </div>
+    <div class="col-xs-1">
+      <i class="fa fa-question" aria-hidden="true"></i> 
+    </div>
+    <div class="col-xs-9">
+      <%=insight.title%> 
+    </div>
+    <div class="col-xs-1">
+      <button class="btn btn-s btn-danger">
+        Answer
+      </button>
+    </div>
+  </div>
+</div>
+<%end%>
 
-      <dt>Name</dt>
-      <dd><%= @presentation.name %></dd>
+  <% else %>
+<div class="container_fluid">
+  <div class = "row">
+    <form action="/create_insight" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      <!-- Label and input for presentation_id -->
+      <input type="hidden" name="presentation_id" value="<%= @presentation.id %>">
+      <!-- Label and input for contributor_id -->
+      <input type="hidden" name="contributor_id" value="2"> <!--should be %= current_contributor.id % -->
+      <!-- Label and input for insght_type_id -->
+      
+    <div class = "col-xs-2">
+      <div class="form-group">
+        <%= select_tag(:insght_type_id, options_from_collection_for_select(InsightType.all, :id, :insight_type), :class => "form-control") %>
+      </div>
+    </div>
+      <!-- Label and input for title -->
+    <div class = "col-xs-8">
+      <div class="form-group">
+        
+          <input type="text" id="title" name="title" placeholder="Type Your Question or Insight Here" class="form-control" value="">
+      </div>
+    </div>
+    <div class = "col-xs-2">  
+      <button class="btn btn-block btn-success">
+        Ask
+      </button>
+    </div>
+    </form>
+</div>
+</div>
 
-    </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/presentations" class="btn btn-primary">
-        Back
-      </a>
-      <% if current_user == @presentation.lead %>
-        <a href="/presentations/<%= @presentation.id %>/edit" class="btn btn-warning">
-          Edit
-        </a>
-        <a href="/delete_presentation/<%= @presentation.id %>" class="btn btn-danger" rel="nofollow">
-          Delete
-        </a>
-      <% end %>
+
+
+
+
+<%@presentation_insights_sorted.each do |insight| %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-1">
+      <%=insight.vote_score%> 
+    </div>
+    <div class="col-xs-1">
+        <i class="fa fa-question" aria-hidden="true"></i>
+      
+    </div>
+    <div class="col-xs-1">
+        <form action ="/create_vote" method ="post">
+          
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        
+          <input type="hidden" name="insight_id" value ="<%=insight.id%>"
+        
+          <input type="hidden" name="contributor_id" value ="current_user.id"> <!--this should be %=current_contributor.id%> --> 
+        
+          <input type="hidden" name="vote" value ="1">
+          
+          <button class="btn btn-link">
+          <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+          </button>
+
+      </form>
+    </div>
+    <div class="col-xs-1">
+            <form action ="/create_vote" method ="post">
+        
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          
+          <input type="hidden" name="insight_id" value ="<%=insight.id%>"
+        
+          <input type="hidden" name="contributor_id" value ="current_user.id"> <!--this should be %=current_contributor.id%> --> 
+        
+          <input type="hidden" name="vote" value ="1">
+          
+          <button class="btn btn-link">
+          <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+          </button>
+
+      </form>
+      
+    </div>
+    <div class="col-xs-8">
+      <%= insight.title%> 
     </div>
   </div>
 </div>
 
-<!-- A Presentation has many contributors -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Contributors
-      </li>
+<% end %>
+<% end %>   
+    
+  
 
-      <% @presentation.contributors.each do |contributor| %>
-        <li class="list-group-item">
-          <a href="/contributors/<%= contributor.id %>">
-            <%= contributor.presentation_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/contributors/<%= contributor.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/contributors/<%= contributor.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_contributor/<%= contributor.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
 
-      <li class="list-group-item">
-        <form action="/create_contributor" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for presentation_id -->
-      <input type="hidden" name="presentation_id" value="<%= @presentation.id %>">
 
-      <!-- Label and input for name -->
-      <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
-      </div>
+      
 
-      <!-- Label and input for email -->
-      <div class="form-group">
-        <label for="email" class="control-label">
-          Email
-        </label>
+      
 
-        <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="">
-      </div>
 
-      <!-- Label and input for position -->
-      <div class="form-group">
-        <label for="position" class="control-label">
-          Position
-        </label>
 
-        <input type="text" id="position" name="position" placeholder="Position" class="form-control" value="">
-      </div>
 
-      <!-- Label and input for department -->
-      <div class="form-group">
-        <label for="department" class="control-label">
-          Department
-        </label>
 
-        <input type="text" id="department" name="department" placeholder="Department" class="form-control" value="">
-      </div>
 
-      <!-- Label and input for facility -->
-      <div class="form-group">
-        <label for="facility" class="control-label">
-          Facility
-        </label>
 
-        <input type="text" id="facility" name="facility" placeholder="Facility" class="form-control" value="">
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Contributor
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- A Presentation has many insights -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Insights
-      </li>
-
-      <% @presentation.insights.each do |insight| %>
-        <li class="list-group-item">
-          <a href="/insights/<%= insight.id %>">
-            <%= insight.presentation_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/insights/<%= insight.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/insights/<%= insight.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_insight/<%= insight.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_insight" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for presentation_id -->
-      <input type="hidden" name="presentation_id" value="<%= @presentation.id %>">
-
-      <!-- Label and input for contributor_id -->
-      <div class="form-group">
-        <label for="contributor_id" class="control-label">
-          Contributor
-        </label>
-
-        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :presentation_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for insght_type_id -->
-      <div class="form-group">
-        <label for="insght_type_id" class="control-label">
-          Insght type
-        </label>
-
-        <%= select_tag(:insght_type_id, options_from_collection_for_select(InsightType.all, :id, :insight_type), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for title -->
-      <div class="form-group">
-        <label for="title" class="control-label">
-          Title
-        </label>
-
-        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for body -->
-      <div class="form-group">
-        <label for="body" class="control-label">
-          Body
-        </label>
-
-        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Insight
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
+      

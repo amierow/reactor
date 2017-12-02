@@ -12,7 +12,7 @@ class Insight < ApplicationRecord
              :class_name => "Vote"
 
   belongs_to :contributor,
-             :counter_cache => :questions_count
+             :counter_cache => :questions_count#, remember if you include to add a comma after :contributor
 
   belongs_to :presentation
 

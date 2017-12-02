@@ -7,9 +7,9 @@
     <dl class="dl-horizontal">
       <dt>Insight</dt>
       <dd>
-        <% if @vote.question.present? %>
+        <% if @vote.insight.present? %>
           <a href="/insights/<%= @vote.insight_id %>">
-            <%= @vote.question.presentation_id %>
+            <%= @vote.insight.presentation_id %>
           </a>
         <% end %>
       </dd>

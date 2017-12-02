@@ -11,5 +11,8 @@ class Presentation < ApplicationRecord
   # Indirect associations
 
   # Validations
+  validates :lead_id, :presence => true
+  validates :date, :presence => true 
+  validates :name, :presence => true, :uniqueness => {:scope => :date }
 
 end

@@ -1,28 +1,62 @@
 class PresentationsController < ApplicationController
-  before_action :current_user_must_be_presentation_user, :only => [:show, :edit, :update, :destroy]
+  skip_before_filter :authenticate_lead!, :only => [:show]
+  #before_action :current_lead_must_be_presentation_lead, :only => [:show, :edit, :update, :destroy]
 
-  def current_user_must_be_presentation_lead
-    presentation = Presentation.find(params[:id])
+  #def current_user_must_be_presentation_lead
+    #presentation = Presentation.find(params[:id])
 
-    unless current_user == presentation.lead
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
+    #unless current_user == presentation.lead
+     # redirect_to :back, :alert => "You are not authorized for that."
+   # end
+  #end
 
   def index
-    @q = current_user.presentations.ransack(params[:q])
-      @presentations = @q.result(:distinct => true).includes(:lead, :contributors, :insights).page(params[:page]).per(10)
-
+    @q = current_lead 
+    @presentations = current_lead.presentations.order("created_at ASC")
+    # = current_user.presentations.ransack(params[:q])
+    #@presentations = @q.result(:distinct => true).includes(:lead, :contributors, :insights).page(params[:page]).per(10)
+    # this was mine but its not working, @presentations = current_user.presentations
     render("presentations/index.html.erb")
   end
 
   def show
-    @insight = Insight.new
-    @contributor = Contributor.new
+    #@insight = Insight.new
+    #@contributor = Contributor.new
     @presentation = Presentation.find(params[:id])
-
+    @presentation.insights.each do |insight|
+      @vote_score = 0.to_i   
+        insight.question_votes.each do |vote| 
+          @vote_score = @vote_score + vote[:vote].to_i
+        end
+      i=Insight.find(insight.id)
+      i.vote_score = @vote_score
+      i.save
+    end
+    @presentation_insights_sorted = @presentation.insights.order(vote_score: :desc)
+    
+    
+    
+    #LOGIN - should enable viewing by contributors
+    
+    if current_lead == @presentation.lead
+      render("presentations/show.html.erb")
+    else
+      if cookies[:contributor_id].blank?
+        @contributor = Contributor.new
+        
+        if ok = @contributor.save
+          Rails.logger.debug("Contribvutor saved!")
+        else
+          Rails.logger.debug(@contributor.errors.full_messages)
+        end
+        cookies[:contributor_id] = @contributor.id
+      else
+        @contributor = Contributor.find(cookies[:contributor_id])
+      end
     render("presentations/show.html.erb")
+    end
   end
+
 
   def new
     @presentation = Presentation.new
@@ -45,7 +79,7 @@ class PresentationsController < ApplicationController
       case referer
       when "/presentations/new", "/create_presentation"
         redirect_to("/presentations")
-      else
+      else 
         redirect_back(:fallback_location => "/", :notice => "Presentation created successfully.")
       end
     else
@@ -71,7 +105,7 @@ class PresentationsController < ApplicationController
 
       case referer
       when "/presentations/#{@presentation.id}/edit", "/update_presentation"
-        redirect_to("/presentations/#{@presentation.id}", :notice => "Presentation updated successfully.")
+        redirect_to("/presentations/", :notice => "Presentation updated successfully.")
       else
         redirect_back(:fallback_location => "/", :notice => "Presentation updated successfully.")
       end

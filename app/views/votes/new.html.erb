@@ -24,7 +24,7 @@
           Insight
         </label>
 
-        <%= select_tag(:insight_id, options_from_collection_for_select(Insight.all, :id, :presentation_id, @vote.insight_id), :class => "form-control") %>
+        <%= select_tag(:insight_id, options_from_collection_for_select(Insight.all, :id, :body, @vote.insight_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for contributor_id -->
@@ -33,17 +33,21 @@
           Contributor
         </label>
 
-        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :presentation_id, @vote.contributor_id), :class => "form-control") %>
+        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :name, @vote.contributor_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for vote -->
-      <div class="form-group">
-        <label for="vote" class="control-label">
-          Vote
-        </label>
 
-        <input type="text" id="vote" name="vote" placeholder="Vote" class="form-control" value="<%= @vote.vote %>">
+
+      <div class="form-group">
+        <input name="vote" value="1" type="radio" id="1" checked>
+        <label for="1">1</label>
       </div>
+
+      <div class="form-group">
+        <input name="vote" value="-1" type="radio" id="-1">
+        <label for="-1">-1</label>
+    </div>
 
       <button class="btn btn-success">
         Create Vote

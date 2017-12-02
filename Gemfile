@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 group :development do
+  gem 'dev_toolbar', git: 'https://github.com/firstdraft/dev_toolbar.git'
   gem "sqlite3"
+  gem 'web_git', github: 'firstdraft/web_git'
 end
 
 group :production do
