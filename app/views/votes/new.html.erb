@@ -33,7 +33,7 @@
           Contributor
         </label>
 
-        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :name, @vote.contributor_id), :class => "form-control") %>
+        <%= select_tag(:contributor_id, options_from_collection_for_select(Contributor.all, :id, :id, @vote.contributor_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for vote -->

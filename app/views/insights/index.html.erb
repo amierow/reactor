@@ -79,6 +79,7 @@
       <tr>
         <th>Presentation</th>
         <th>Contributor</th>
+        <th>Score</th>
         <th>Insght type</th>
         <th>Title</th>
         <th>Body</th>
@@ -98,6 +99,12 @@
           <% if insight.contributor.present? %>
             <a href="/contributors/<%= insight.contributor.id %>">
               <%= insight.contributor.presentation_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if insight.vote_score.present? %>
+              <%= insight.vote_score %>
             </a>
           <% end %>
         </td>

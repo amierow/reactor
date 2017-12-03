@@ -20,11 +20,30 @@ class VotesController < ApplicationController
   end
 
   def create
-    @vote = Vote.new
+    @vote_check=Vote.find_by({:contributor_id => params[:contributor_id], :insight_id =>(params[:insight_id])})
+    if @vote_check.present? == true #if the vote already exists
+    
+    @vote = Vote.find(@vote_check.id) #find the vote by the insight id and the contributor id in params
+    @vote.vote = params[:vote] #update just the vote field
+    @vote.save #save the vote
+    save_status = @vote.save #check the save status and save it in a local variable
+        if save_status == true
+          referer = URI(request.referer).path
 
-    @vote.insight_id = params[:insight_id]
+          case referer
+          when "/votes/new", "/create_vote"
+            redirect_to("/votes")
+          else
+            redirect_back(:fallback_location => "/presentations/"+params[:presentation_id], :notice => "Vote updated successfully.")
+          end
+        end
+    else #otherwise it should be a new vote
+    @vote = Vote.new #create a new vote
+
+    @vote.insight_id = params[:insight_id] #grab the items from the params
     @vote.contributor_id = params[:contributor_id]
     @vote.vote = params[:vote]
+    @vote.save
 
     save_status = @vote.save
 
@@ -35,10 +54,11 @@ class VotesController < ApplicationController
       when "/votes/new", "/create_vote"
         redirect_to("/votes")
       else
-        redirect_back(:fallback_location => "/", :notice => "Vote created successfully.")
+        redirect_back(:fallback_location => "/presentations/"+params[:presentation_id], :notice => "Vote created successfully.")
       end
     else
       render("votes/new.html.erb")
+    end
     end
   end
 

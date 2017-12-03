@@ -38,23 +38,30 @@ class PresentationsController < ApplicationController
     
     #LOGIN - should enable viewing by contributors
     
-    if current_lead == @presentation.lead
-      render("presentations/show.html.erb")
-    else
-      if cookies[:contributor_id].blank?
+    if current_lead == @presentation.lead #if there is a lead, we're good
+    elsif cookies[:contributor_id].present? == true #if there are cookies with a contributor id
+    @contributor=Contributor.find(cookies[:contributor_id]) #the @contributor variable grabs that id and we go through another check
+        if @presentation.contributors.include?(@contributor) #if you find it in the list of this presentations contributers were find
+        else #create a new contributor
+        #if cookies[:contributor_id].blank?
         @contributor = Contributor.new
-        
-        if ok = @contributor.save
-          Rails.logger.debug("Contribvutor saved!")
-        else
-          Rails.logger.debug(@contributor.errors.full_messages)
-        end
+        @contributor.presentation_id = @presentation.id
+        @contributor.save
         cookies[:contributor_id] = @contributor.id
-      else
-        @contributor = Contributor.find(cookies[:contributor_id])
-      end
-    render("presentations/show.html.erb")
+        #if ok = @contributor.save
+        #  Rails.logger.debug("Contribvutor saved!")
+        #else
+         # Rails.logger.debug(@contributor.errors.full_messages)
+        end
+    else #create a new contributor
+      @contributor = Contributor.new
+        @contributor.presentation_id = @presentation.id
+        @contributor.save
+        cookies[:contributor_id] = @contributor.id
     end
+    
+
+    render("presentations/show.html.erb")
   end
 
 
